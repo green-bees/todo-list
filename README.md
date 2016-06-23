@@ -10,7 +10,7 @@ A todo application designed for busy bees
 	* JS Framework: [VueJS](https://vuejs.org/)
 	* CSS Framework: [Bootstrap](http://getbootstrap.com/)
 * Back-End
-	* Langugage: Javascript
+	* Language: Javascript
 	* Framework: NodeJS/Express
 	* Database: MongoDB
 
