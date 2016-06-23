@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var database = require('./database.js');
+var database = require('../database/database.js');
 
 // Create item
 router.post('/', function(req, res) {
