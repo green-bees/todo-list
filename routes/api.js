@@ -13,12 +13,18 @@ router.post('/', function(req, res) {
   });
 });
 
-// Read item
+// Read item(s)
 router.get('/:id', function(req, res) {
   var id = req.params.id;
 
   database.readItem(id, function(item) {
     res.send(item);
+  });
+});
+
+router.get('/', function(req, res) {
+  database.readItems(function(items) {
+    res.send(items);
   });
 });
 
