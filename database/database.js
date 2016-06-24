@@ -25,6 +25,17 @@ api.createItem = function(item, callback) {
 
 // Reads a task with `id` from the database
 api.readItem = function(id, callback) {
+  var cursor = database.collection(collection).find({
+    _id: id
+  });
+
+  cursor.each(function(err, doc) {
+    if(doc != null) {
+      callback(doc);
+    } else {
+      callback();
+    }
+  });
 };
 
 // Reads all tasks from the database
@@ -43,10 +54,28 @@ api.readItems = function(callback) {
 
 // Updates a task with `id` in the database
 api.updateItem = function(id, item, callback) {
+  database.collection(collection).updateOne({
+    _id, id
+  }, item, function(err, results) {
+    if(err) {
+      callback(err.status);
+    } else {
+      callback(200);
+    }
+  });
 };
 
 // Deletes a task with `id` from the database
 api.deleteItem = function(id, callback) {
+  database.collection(collection).deleteOne({
+    _id: id
+  }, function(err, results) {
+    if(err) {
+      callback(err.status);
+    } else {
+      callback(200);
+    }
+  });
 };
 
 module.exports = api;
