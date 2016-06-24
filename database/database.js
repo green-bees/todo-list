@@ -55,7 +55,7 @@ api.readItems = function(callback) {
 // Updates a task with `id` in the database
 api.updateItem = function(id, item, callback) {
   database.collection(collection).updateOne({
-    _id, id
+    _id: id
   }, item, function(err, results) {
     if(err) {
       callback(err.status);
