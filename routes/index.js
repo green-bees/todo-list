@@ -7,26 +7,26 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET signin page */
-app.get('/signin', function (req,res) {
+router.get('/signin', function (req,res) {
   res.render('signin');
 });
 
 //sends signup request, if succesful takes user to homepage, else back to signin*/
-app.post('/local-reg', passport.authenticate('local-signup', {
+router.post('/local-reg', passport.authenticate('local-signup', {
   successRedirect: '/',
   failureRedirect: '/signin'
   })
 );
 
 //sends signin request, if succesful takes user to homepage, else back to signin*/
-app.post('/login', passport.authenticate('local-signin', {
+router.post('/login', passport.authenticate('local-signin', {
   successRedirect: '/',
   failureRedirect: '/signin'
   })
 );
 
 //logout and return home
-app.get('/logout', function (req, res) {
+router.get('/logout', function (req, res) {
   var name = req.user.username;
   console.log("LOGGING OUT" + req.user.username);
   req.logout();
