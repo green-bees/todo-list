@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -28,8 +29,8 @@ app.use(cookieParser());
 // Passport (user support)
 app.use(require('express-session')({
   secret: 'todo-app',
-  resave: false,
-  saveUninitialized: false
+  resave: true,
+  saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -40,6 +41,8 @@ var Account = require('./models/account.js');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
+
+mongoose.connect('mongodb://admin:password@ds023064.mlab.com:23064/green_bees_to-do');
 
 app.use('/', routes);
 app.use('/users', users);

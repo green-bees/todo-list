@@ -1,12 +1,37 @@
+'use strict';
+
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
+var Account = require('../models/account.js');
 
+router.get('/register', function(req, res) {
+  res.render('register');
+});
 
-// Initial commit for user-support branch
+router.post('/register', function(req, res) {
+  Account.register(new Account({username: req.body.username}), req.body.password, function(err, account) {
+    if(err) {
+      return res.render('register', {account: account});
+    }
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+    passport.authenticate('local')(req, res, function() {
+      res.redirect('/');
+    });
+  });
+});
+
+router.get('/signin', function(req, res) {
+  res.render('signin', {user: req.user});
+});
+
+router.post('/signin', passport.authenticate('local'), function(req, res) {
+  res.redirect('/');
+});
+
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
 });
 
 module.exports = router;
