@@ -3,10 +3,68 @@
   <head>
     <meta charset="utf-8">
     <title>Signin</title>
+    <style media="screen">
+      * {
+        box-sizing: border-box;
+      }
+      body, h1 {
+        font-family: "Tahoma";
+        font-weight: normal;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .card {
+        width: 400px;
+        padding: 20px;
+        margin: 0 auto 40px auto;
+
+        background: #eee;
+        border-radius: 5px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, .4);
+
+        display: flex;
+        flex-direction: column;
+      }
+      .card input, .card button {
+        margin-bottom: 10px;
+        padding: 10px;
+
+        border: 2px solid gray;
+        text-transform: uppercase;
+      }
+      .card button:hover {
+        background: gray;
+        color: white;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, .4);
+        cursor: pointer;
+      }
+      a {
+        padding: 10px;
+
+        border: 2px solid gray;
+        border-radius: 5px;
+        color: gray;
+        text-decoration: none;
+      }
+      a:hover {
+        background: gray;
+        color: white;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, .4);
+      }
+      @media (max-width: 500px) {
+        .card {
+          width: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
+    <% if(typeof error != "undefined") { %>
+      <h3><%= error %></h3>
+    <% } %>
     <h1>Signin</h1>
-    <form action="/users/signin", method="post">
+    <form action="/users/signin", method="post", class="card">
       <input type="text", name="username", placeholder="username">
       <input type="password", name="password", placeholder="password">
       <button type="submit">Submit</button>

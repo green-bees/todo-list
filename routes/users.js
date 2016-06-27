@@ -22,16 +22,24 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/signin', function(req, res) {
-  res.render('signin', {user: req.user});
+  if(req.user != null) {
+    return res.redirect('/');
+  }
+
+  res.render('signin');
 });
 
-router.post('/signin', passport.authenticate('local'), function(req, res) {
+router.post('/signin', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/signin',
+  failureFlash: true
+}), function(req, res) {
   res.redirect('/');
 });
 
 router.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect('/users/signin');
 });
 
 module.exports = router;
