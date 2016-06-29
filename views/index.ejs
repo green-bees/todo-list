@@ -7,9 +7,50 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Hello, world</h1>
-    
+    <h1>Green Bees To-do</h1>
+    <form> <!-- Remove after newTask is working -->
+      <input />
+      <button type="submit">Submit</button>
+    </form>
+    <ul class="nav nav-tabs"> <!-- Bootstrap tabs -->
+      <li class="active"><a href="#">To-do</a></li>
+      <li><a href="#">Work</a></li>
+      <li><a href="#">+Add</a></li>
+    </ul>
+    <div id="app">
+      <newTask></newTask> <!-- Not working -->
+      <tasks :list="tasks"></tasks>
+    </div>
+
+    <template id="newTask-template"> <!-- New task form -->
+      <form>
+        <input v-model="task"/>
+        <button type="submit">Submit</button>
+      </form>
+    </template>
+
+    <template id="tasks-template"> <!-- Renders List of Tasks -->
+      <div>
+        <ul class="list-unstyled">
+          <li :class="{ 'completed': task.completed }"
+              v-for="task in list">
+              <input type="checkbox"/>
+              {{ task.task }}
+              <span class="caretToggle"></span>
+              <strong @click="deleteTask(task)">X</strong>
+          </li>
+        </ul>
+      </div>
+    </template>
+
+    <template id="task-template"> <!-- Not done. Component for individual task? -->
+      <span></span>
+    </template>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js"></script>
+    <script src="/javascript/main.js"></script>
+    <script src="/javascript/api.js"></script>
   </body>
 </html>
