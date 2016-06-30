@@ -55,6 +55,15 @@ api.getTasks = function(callback) {
   });
 };
 
-// Testing purposes
-(function() {
-})();
+// Add a task
+api.addTask = function(task, callback) {
+  var config = {
+    method: 'POST',
+    url: api.url,
+    data: task
+  };
+
+  $.ajax(config).done(function(status) {
+    callback(status);
+  });
+};
