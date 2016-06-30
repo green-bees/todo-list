@@ -42,3 +42,28 @@ a {
 #ex1Slider .slider-selection {
 	background: #BABABA;
 }
+
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-half {
+  flex-grow: 0.5;
+}
+
+.btn-complete {
+  color: green;
+  font-size: 1.2em;
+  border: 3px solid green;
+  border-radius: 50%;
+  padding: 2px;
+  float: right;
+  cursor: pointer;
+}
+
+.btn-complete:hover {
+  color: #00d400;
+  border: 3px solid #00d400;
+}

@@ -33,8 +33,15 @@
           <ul class="list-group">
             <template v-for="task in tasks">
               <li class="list-group-item">
-                <h4 class="list-group-item-heading">{{ task.task }}</h4>
-                <p class="list-group-item-text">Importance: {{ task.importance }} | Completed: {{ task.completed }}</p>
+                <div class="vertical-align">
+                  <div class="flex-half">
+                    <h4 class="list-group-item-heading">{{ task.task }}</h4>
+                    <p class="list-group-item-text">Importance: {{ task.importance }} | Completed: {{ task.completed }}</p>
+                  </div>
+                  <div class="flex-half">
+                    <span class="glyphicon glyphicon-ok btn-complete" onclick="alert('Completing a task doesn\'t work yet');"></span>
+                  </div>
+                </div>
               </li>
             </template>
           </ul>
