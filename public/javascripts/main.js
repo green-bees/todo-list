@@ -83,6 +83,15 @@ var taskList = new Vue({
           self.tasks.push(task);
         });
       });
+    },
+
+    removeTask: function(index) {
+      var self = this;
+      var id = this.tasks[index]._id;
+
+      api.deleteTask(id, function(status) {
+        self.getTasks();
+      });
     }
   }
 });

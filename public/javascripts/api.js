@@ -67,3 +67,15 @@ api.addTask = function(task, callback) {
     callback(status);
   });
 };
+
+// Delete a task
+api.deleteTask = function(id, callback) {
+  var config = {
+    method: 'DELETE',
+    url: api.url + id
+  };
+
+  $.ajax(config).done(function(status) {
+    callback(status);
+  });
+};

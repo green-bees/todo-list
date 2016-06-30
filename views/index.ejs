@@ -39,7 +39,7 @@
                     <p class="list-group-item-text">Importance: {{ task.importance }} | Completed: {{ task.completed }}</p>
                   </div>
                   <div class="flex-half">
-                    <span class="glyphicon glyphicon-ok btn-complete" onclick="alert('Completing a task doesn\'t work yet');"></span>
+                    <span class="glyphicon glyphicon-ok btn-complete" v-on:click="removeTask($index)"></span>
                   </div>
                 </div>
               </li>
@@ -52,6 +52,7 @@
       </div>
 
       <br>
+      <hr>
 
       <div class="row">
         <div class="col-sm-12">
