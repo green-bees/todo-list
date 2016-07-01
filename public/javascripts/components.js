@@ -41,7 +41,7 @@ var TaskItem = Vue.component('task-item', {
   template:
     '<div class="media">' +
       '<div class="media-left media-middle">' +
-        '<button type="button" class="btn btn-lg btn-link">' +
+        '<button type="button" class="btn btn-lg btn-link" v-on:click="completeTask">' +
           '<span class="glyphicon" :class="taskStateClass"></span>' +
         '</button>' +
       '</div>' +
@@ -70,6 +70,21 @@ var TaskItem = Vue.component('task-item', {
       }
 
       return this.isBeingEdited;
+    },
+
+    /**
+     * Marks the current task as complete
+     * @return {Boolean} Whether or not the task has been marked as completed
+     */
+    completeTask: function () {
+      /** If it is currently being edited, break out of editing before saving */
+      if (this.isBeingEdited === true) {
+        return false;
+      }
+
+      this.isCompleted = true;
+
+      return this.isCompleted;
     }
   }
 });
