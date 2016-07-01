@@ -31,15 +31,18 @@ var TaskItem = Vue.component('task-item', {
     }
   },
   computed: {
-    classObject: function () {
+    taskStateClass: function () {
       return this.isCompleted ? 'glyphicon-check' : 'glyphicon-unchecked';
+    },
+    taskEditStatusClass: function () {
+      return this.isBeingEdited ? 'glyphicon-remove' : 'glyphicon-chevron-down';
     }
   },
   template:
     '<div class="media">' +
       '<div class="media-left media-middle">' +
         '<button type="button" class="btn btn-lg btn-link">' +
-          '<span class="glyphicon" :class="classObject"></span>' +
+          '<span class="glyphicon" :class="taskStateClass"></span>' +
         '</button>' +
       '</div>' +
       '<div class="media-body task-attributes">' +
@@ -48,7 +51,7 @@ var TaskItem = Vue.component('task-item', {
       '</div>' +
       '<div class="media-right media-middle">' +
         '<button type="button" class="btn btn-lg btn-link">' +
-          '<span class="glyphicon glyphicon-chevron-down"></span>' +
+          '<span class="glyphicon" :class="taskEditStatusClass"></span>' +
         '</button>' +
       '</div>' +
     '</div>'
