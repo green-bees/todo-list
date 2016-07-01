@@ -30,22 +30,12 @@
 
     <div id="taskList" class="container">
       <h5>Tasks</h5>
-      <ul class="list-group">
-        <template v-for="task in tasks">
-          <li class="list-group-item">
-            <div class="vertical-align">
-              <div class="flex-half">
-                <h4 class="list-group-item-heading">{{ task.task }}</h4>
-                <p class="list-group-item-text">Importance: {{ task.importance }} | Completed: {{ task.completed }}</p>
-              </div>
-              <div class="flex-half">
-                <span class="glyphicon glyphicon-ok btn-complete" v-on:click="removeTask($index)"></span>
-              </div>
-            </div>
-          </li>
-        </template>
-      </ul>
-      <button class="btn btn-info btn-block" v-on:click="getTasks">Reload</button>
+      <div class="list-group">
+        <div class="list-group-item" v-for="task in tasks">
+          <task-item :task-text="task.task" :importance-level="task.importance" :is-completed="task.completed"></task-item>
+        </div>
+        <button class="reload btn btn-info btn-block" v-on:click="getTasks">Reload</button>
+        </div>
     </div>
 
     <div class="container">
@@ -97,6 +87,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js"></script>
     <script src="/javascripts/api.js"></script>
+    <script src="/javascripts/components.js"></script>
     <script src="/javascripts/main.js"></script>
   </body>
 </html>
