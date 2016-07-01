@@ -36,13 +36,20 @@ var TaskItem = Vue.component('task-item', {
     }
   },
   template:
-    '<div>' +
-      '<div class="task-state">' +
-        '<span class="glyphicon" :class="classObject"></span>' +
+    '<div class="media">' +
+      '<div class="media-left media-middle">' +
+        '<button type="button" class="btn btn-lg btn-link">' +
+          '<span class="glyphicon" :class="classObject"></span>' +
+        '</button>' +
       '</div>' +
-      '<div class="task-attributes">' +
+      '<div class="media-body task-attributes">' +
         '<h4>{{ taskText }}</h4>' +
         '<p>Importance: {{ importanceLevel }} | Completed: {{ isCompleted }}</p>' +
+      '</div>' +
+      '<div class="media-right media-middle">' +
+        '<button type="button" class="btn btn-lg btn-link">' +
+          '<span class="glyphicon glyphicon-chevron-down"></span>' +
+        '</button>' +
       '</div>' +
     '</div>'
 });
