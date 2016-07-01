@@ -51,8 +51,25 @@ var TaskItem = Vue.component('task-item', {
       '</div>' +
       '<div class="media-right media-middle">' +
         '<button type="button" class="btn btn-lg btn-link">' +
-          '<span class="glyphicon" :class="taskEditStatusClass"></span>' +
+          '<span class="glyphicon" :class="taskEditStatusClass" v-on:click="changeEditState"></span>' +
         '</button>' +
       '</div>' +
-    '</div>'
+    '</div>',
+  methods: {
+    /**
+     * Allow the task to be edited within the view
+     * Change whether or not the Task is in the state of being edited
+     * @return {Boolean} Whether or not the task is being edited
+     */
+    changeEditState: function () {
+      /** If it is currently being edited, break out of editing before saving */
+      if (this.isBeingEdited === true) {
+        this.isBeingEdited = false;
+      } else if (this.isBeingEdited === false) {
+        this.isBeingEdited = true;
+      }
+
+      return this.isBeingEdited;
+    }
+  }
 });
