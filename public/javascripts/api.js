@@ -69,3 +69,23 @@ api.deleteTask = function(id, callback) {
     callback(status);
   });
 };
+
+/**
+ * Update a single task's information
+ * @param  {Object}   task     The task to be updated
+ * @param  {Function} callback The callback function to handle the API response
+ */
+api.updateTask = function (task, callback) {
+  var config = {
+    method: 'PUT',
+    url: api.url + task._id,
+    data: task
+  };
+
+  $.ajax(config)
+    .done(function (status) {
+      if (isFunction(callback)) {
+        callback(status);
+      }
+    });
+}
