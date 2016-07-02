@@ -4,16 +4,45 @@ var api = {};
 
 api.url = '/api/';
 
-// Get all tasks
-api.getTasks = function(callback) {
+// http://stackoverflow.com/a/7356528
+function isFunction (funcToCheck) {
+  var _getType = {};
+  return funcToCheck && _getType.toString.call(funcToCheck) === '[object Function]';
+}
+
+/**
+ * Get all or one task (by _id) from the tasks in the database
+ * @param  {String|Function}   taskIdOrCallback A callback function or the _id value for a task
+ * @param  {[Function]} callback         The callback argument if arg1 is the task id
+ */
+api.getTasks = function(taskIdOrCallback, callback) {
+
+  // Create the URL locally so we can manipulate it later
+  var _apiEndpoint = api.url;
+  // Initially set the callback to the first argument
+  var _callback = taskIdOrCallback;
+
+  /** Check if the first argument is NOT a function */
+  if (!isFunction(taskIdOrCallback)) {
+    // update the API URL to include the ID
+    _apiEndpoint = api.url + '/' + taskIdOrCallback;
+    // set the callback function to the second argument
+    _callback = callback;
+  }
+
   var config = {
     method: 'GET',
-    url: api.url
+    url: _apiEndpoint
   };
 
-  $.ajax(config).done(function(tasks) {
-    callback(tasks);
-  });
+  // My personal style is to place each function on a new line when chaining functions together
+  // You don't have to do the same, I just wanted to give you an example if you haven't ever seen it
+  $.ajax(config)
+    .done(function(tasks) {
+      if (isFunction(_callback)) {
+        _callback(tasks);
+      }
+    });
 };
 
 // Add a task
