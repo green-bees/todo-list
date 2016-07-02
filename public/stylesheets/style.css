@@ -67,3 +67,16 @@ a {
   color: #00d400;
   border: 3px solid #00d400;
 }
+
+.list-group div.input-group input.form-control {
+  border-bottom-left-radius: 0;
+}
+
+.list-group div.input-group button[type=submit] {
+  border-bottom-right-radius: 0;
+}
+
+.list-group button.reload {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}

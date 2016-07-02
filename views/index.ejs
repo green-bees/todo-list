@@ -14,28 +14,24 @@
       </div>
     </div>
 
-    <div class="container">
-      <div id="taskSubmit" class="row">
-        <div class="col-sm-6">
-          <form>
-            <div class="form-group">
-              <label for="newTaskInput">Add a new task</label>
-              <input type="text" class="form-control" id="newTaskInput" placeholder="Task..." v-model="taskDesc">
-            </div>
-            <button type="button" class="btn btn-success" v-on:click="addTask">Add</button>
-          </form>
-        </div>
-      </div>
-    </div>
-
     <div id="taskList" class="container">
       <h5>Tasks</h5>
       <div class="list-group">
+
+        <div class="input-group input-group-lg">
+          <input type="text" class="form-control" name="task" placeholder="New Task...">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary">Add</button>
+          </span>
+        </div>
+
         <div class="list-group-item" v-for="task in tasks">
           <task-item :task-text="task.task" :importance-level="task.importance" :is-completed="task.completed"></task-item>
         </div>
+
         <button class="reload btn btn-info btn-block" v-on:click="getTasks">Reload</button>
-        </div>
+
+      </div>
     </div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
