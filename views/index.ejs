@@ -21,6 +21,11 @@
             <div class="form-group">
               <label for="newTaskInput">Add a new task</label>
               <input type="text" class="form-control" id="newTaskInput" placeholder="Task..." v-model="taskDesc">
+              <span class="importanceInput">Importance: </span>
+              <label class="radio-inline"><input type="radio" name="optradio" value="1" v-model="picked" checked="checked">Low</label>
+              <label class="radio-inline"><input type="radio" name="optradio" value="2" v-model="picked">Mid</label>
+              <label class="radio-inline"><input type="radio" name="optradio" value="3" v-model="picked">High</label>
+              <span class="importanceInput">Picked: {{ picked }}</span>
             </div>
             <button type="button" class="btn btn-success" v-on:click="addTask">Add</button>
           </form>

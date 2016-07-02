@@ -36,6 +36,20 @@ var TaskItem = Vue.component('task-item', {
     },
     taskEditStatusClass: function () {
       return this.isBeingEdited ? 'glyphicon-remove' : 'glyphicon-chevron-down';
+    },
+    labelClasses: function() {
+        var importance = this.importanceLevel;
+        return {
+
+            'label': true,
+
+            'label-default': importance == 1,
+
+            'label-warning': importance == 2,
+
+            'label-danger': importance == 3
+
+        }
     }
   },
   template:
@@ -47,6 +61,7 @@ var TaskItem = Vue.component('task-item', {
       '</div>' +
       '<div class="media-body task-attributes">' +
         '<h4>{{ taskText }}</h4>' +
+        '<span :class="labelClasses">Importance</span>' +
         '<p>Importance: {{ importanceLevel }} | Completed: {{ isCompleted }}</p>' +
       '</div>' +
       '<div class="media-right media-middle">' +

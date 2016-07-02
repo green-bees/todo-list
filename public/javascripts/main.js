@@ -2,14 +2,15 @@ var taskSubmit = new Vue({
   el: '#taskSubmit',
 
   data: {
-    taskDesc: ''
+    taskDesc: '',
+    picked: ''
   },
 
   methods: {
     addTask: function() {
       var self = this;
       var task = this.taskDesc;
-      var importance = 1; // Default value 1 (TODO: allow for input)
+      var importance = this.picked; // Default value 1 (TODO: allow for input)
 
       var task = {
         task: task,
@@ -44,7 +45,7 @@ var taskList = new Vue({
       });
     },
 
-    removeTask: function(index) {
+    removeTask: function(index) { 
       var self = this;
       var id = this.tasks[index]._id;
 
