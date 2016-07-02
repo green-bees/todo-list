@@ -35,20 +35,24 @@ var TaskItem = Vue.component('task-item', {
       return this.isCompleted ? 'glyphicon-check' : 'glyphicon-unchecked';
     },
     taskEditStatusClass: function () {
-      return this.isBeingEdited ? 'glyphicon-remove' : 'glyphicon-chevron-down';
+      return this.isBeingEdited ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down';
+    },
+    taskEditStatusClassEdit: function () {
+      return this.isBeingEdited ? 'glyphicon-pencil' : 'hidden';
+    },
+    taskEditStatusClassDelete: function () {
+      return this.isBeingEdited ? 'glyphicon-trash' : 'hidden';
+    },
+    taskCompleteClass: function () {
+      return this.isCompleted ? 'completed' : 'incomplete';
     },
     labelClasses: function() {
         var importance = this.importanceLevel;
         return {
-
             'label': true,
-
             'label-default': importance == 1,
-
             'label-warning': importance == 2,
-
             'label-danger': importance == 3
-
         }
     }
   },
@@ -60,13 +64,19 @@ var TaskItem = Vue.component('task-item', {
         '</button>' +
       '</div>' +
       '<div class="media-body task-attributes">' +
-        '<h4>{{ taskText }}</h4>' +
+        '<h4 :class="taskCompleteClass">{{ taskText }}</h4>' +
         '<span :class="labelClasses">Importance</span>' +
         '<p>Importance: {{ importanceLevel }} | Completed: {{ isCompleted }}</p>' +
       '</div>' +
       '<div class="media-right media-middle">' +
         '<button type="button" class="btn btn-lg btn-link">' +
           '<span class="glyphicon" :class="taskEditStatusClass" v-on:click="changeEditState"></span>' +
+        '</button>' +
+        '<button type="button" class="btn btn-lg btn-link">' +
+          '<span class="glyphicon" :class="taskEditStatusClassEdit"></span>' +
+        '</button>' +
+        '<button type="button" class="btn btn-lg btn-link">' +
+          '<span class="glyphicon" :class="taskEditStatusClassDelete" v-on:click="removeTask"></span>' +
         '</button>' +
       '</div>' +
     '</div>',
