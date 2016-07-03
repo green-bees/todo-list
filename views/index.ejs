@@ -20,7 +20,7 @@
 
         <task-submission></task-submission>
 
-        <div class="list-group-item" v-for="task in tasks">
+        <div class="list-group-item list-task-item" v-for="task in tasks">
           <task-item :task-object="task" :task-text="task.task" :importance-level="task.importance"></task-item>
         </div>
 

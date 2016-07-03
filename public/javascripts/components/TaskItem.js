@@ -81,11 +81,13 @@ var TaskItem = Vue.component('task-item', {
         '<button type="button" class="btn btn-lg btn-link">' +
           '<span class="glyphicon" :class="taskEditStatusClass" v-on:click="changeEditState"></span>' +
         '</button>' +
-        '<button type="button" class="btn btn-lg btn-link">' +
-          '<span class="glyphicon" :class="taskEditStatusClassEdit"></span>' +
+      '</div>' +
+      '<div class="action-items" :class="{ hidden: !isBeingEdited }">' +
+        '<button type="button" class="btn btn-lg btn-link pull-right">' +
+          '<span class="glyphicon glyphicon-pencil"></span>' +
         '</button>' +
-        '<button type="button" class="btn btn-lg btn-link">' +
-          '<span class="glyphicon" :class="taskEditStatusClassDelete" v-on:click="removeTask"></span>' +
+        '<button type="button" class="btn btn-lg btn-link pull-right">' +
+          '<span class="glyphicon glyphicon-trash" v-on:click="removeTask"></span>' +
         '</button>' +
       '</div>' +
     '</div>',
@@ -111,9 +113,6 @@ var TaskItem = Vue.component('task-item', {
      * @return {Boolean} Whether or not the task has been marked as completed
      */
     changeTaskStatus: function () {
-      console.groupCollapsed('changeTaskStatus');
-
-      console.log('completed this task', this.taskObject);
       /** If it is currently being edited, break out of editing before saving */
       if (this.isBeingEdited === true) {
         return false;
@@ -123,8 +122,6 @@ var TaskItem = Vue.component('task-item', {
       this.taskObject.completed = !this.taskObject.completed;
 
       this.$dispatch('updateTask', this.taskObject);
-
-      console.groupEnd();
 
       return this.isCompleted;
     },

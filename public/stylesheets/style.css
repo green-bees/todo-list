@@ -50,3 +50,11 @@ a {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
+
+.list-task-item .action-items {
+  border-top: 1px solid #e3e3e3;
+}
+
+.list-task-item .action-items:not(.hidden) button {
+  padding-bottom: 0px;
+}
