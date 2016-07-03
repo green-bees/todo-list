@@ -18,6 +18,10 @@ var TaskItem = Vue.component('task-item', {
       type: Boolean,
       default: false
     },
+    isBeingEdited: {
+      type: Boolean,
+      default: false
+    },
     taskObject: {
       type: Object,
       coerce: function (val) {
@@ -47,7 +51,7 @@ var TaskItem = Vue.component('task-item', {
       return this.areActionsVisible ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down';
     },
     taskEditStatusClassEdit: function () {
-      return this.areActionsVisible ? 'glyphicon-pencil' : 'hidden';
+      return this.isBeingEdited ? 'glyphicon-floppy-disk' : 'glyphicon-pencil';
     },
     taskEditStatusClassDelete: function () {
       return this.areActionsVisible ? 'glyphicon-trash' : 'hidden';
@@ -73,7 +77,10 @@ var TaskItem = Vue.component('task-item', {
         '</button>' +
       '</div>' +
       '<div class="media-body task-attributes">' +
-        '<h4 :class="taskCompleteClass">{{ taskText }}</h4>' +
+        '<div v-if="isBeingEdited" class="task-edit">' +
+          '<input type="text" class="form-control" v-model="taskObject.task" name="task" placeholder="There must be text here">' +
+        '</div>' +
+        '<h4 v-else :class="taskCompleteClass">{{ taskObject.task }}</h4>' +
         '<span :class="labelClasses">Importance</span>' +
         '<p>Importance: {{ importanceLevel }} | Completed: {{ isCompleted }}</p>' +
       '</div>' +
@@ -83,8 +90,8 @@ var TaskItem = Vue.component('task-item', {
         '</button>' +
       '</div>' +
       '<div class="action-items" :class="{ hidden: !areActionsVisible }">' +
-        '<button type="button" class="btn btn-lg btn-link pull-right">' +
-          '<span class="glyphicon glyphicon-pencil"></span>' +
+        '<button type="button" class="btn btn-lg btn-link pull-right" v-on:click="changeEditState">' +
+          '<span class="glyphicon" :class="taskEditStatusClassEdit"></span>' +
         '</button>' +
         '<button type="button" class="btn btn-lg btn-link pull-right">' +
           '<span class="glyphicon glyphicon-trash" v-on:click="removeTask"></span>' +
@@ -106,6 +113,10 @@ var TaskItem = Vue.component('task-item', {
       }
 
       return this.areActionsVisible;
+    },
+
+    changeEditState: function () {
+      this.isBeingEdited = !this.isBeingEdited;
     },
 
     /**
