@@ -18,13 +18,6 @@
       <h5>Tasks</h5>
       <div class="list-group">
 
-        <div class="input-group input-group-lg">
-          <input type="text" class="form-control" name="task" placeholder="New Task...">
-          <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary">Add</button>
-          </span>
-        </div>
-
         <div class="list-group-item" v-for="task in tasks">
           <task-item :task-text="task.task" :importance-level="task.importance" :is-completed="task.completed"></task-item>
         </div>
