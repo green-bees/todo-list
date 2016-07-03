@@ -31,6 +31,8 @@ var TaskItem = Vue.component('task-item', {
           val.completed = false;
         }
 
+        val.originalText = val.task;
+
         return val;
       },
       required: true
@@ -78,7 +80,7 @@ var TaskItem = Vue.component('task-item', {
       '</div>' +
       '<div class="media-body task-attributes">' +
         '<div v-if="isBeingEdited" class="task-edit">' +
-          '<input type="text" class="form-control" v-model="taskObject.task" name="task" placeholder="There must be text here">' +
+          '<input type="text" class="form-control" v-model="taskObject.task" name="task" placeholder="There must be text here" @keyup.enter="changeEditState">' +
         '</div>' +
         '<h4 v-else :class="taskCompleteClass">{{ taskObject.task }}</h4>' +
         '<div class="attributes-display">' +
@@ -122,7 +124,10 @@ var TaskItem = Vue.component('task-item', {
 
     changeEditState: function () {
       this.isBeingEdited = !this.isBeingEdited;
-      this.taskObject.originalText = this.taskObject.task;
+
+      if (this.taskObject.originalText !== this.taskObject.task) {
+        this.$dispatch('updateTask', this.taskObject);
+      }
     },
 
     /**
