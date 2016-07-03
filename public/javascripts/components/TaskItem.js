@@ -81,8 +81,10 @@ var TaskItem = Vue.component('task-item', {
           '<input type="text" class="form-control" v-model="taskObject.task" name="task" placeholder="There must be text here">' +
         '</div>' +
         '<h4 v-else :class="taskCompleteClass">{{ taskObject.task }}</h4>' +
-        '<span :class="labelClasses">Importance</span>' +
-        '<p>Importance: {{ importanceLevel }} | Completed: {{ isCompleted }}</p>' +
+        '<div class="attributes-display">' +
+          '<span :class="labelClasses">Importance</span>' +
+          '<p>Importance: {{ importanceLevel }} | Completed: {{ isCompleted }}</p>' +
+        '</div>' +
       '</div>' +
       '<div class="media-right media-middle">' +
         '<button type="button" class="btn btn-lg btn-link" v-on:click="changeActionsState">' +

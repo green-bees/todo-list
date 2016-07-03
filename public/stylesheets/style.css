@@ -64,6 +64,10 @@ a {
   margin-left: 13px;
 }
 
+.list-task-item .task-attributes .attributes-display {
+  margin-left: 13px;
+}
+
 .list-task-item .action-items {
   border-top: 1px solid #e3e3e3;
 }
