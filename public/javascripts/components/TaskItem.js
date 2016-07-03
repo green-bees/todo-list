@@ -78,8 +78,8 @@ var TaskItem = Vue.component('task-item', {
         '<p>Importance: {{ importanceLevel }} | Completed: {{ isCompleted }}</p>' +
       '</div>' +
       '<div class="media-right media-middle">' +
-        '<button type="button" class="btn btn-lg btn-link">' +
-          '<span class="glyphicon" :class="taskEditStatusClass" v-on:click="changeEditState"></span>' +
+        '<button type="button" class="btn btn-lg btn-link" v-on:click="changeEditState">' +
+          '<span class="glyphicon" :class="taskEditStatusClass"></span>' +
         '</button>' +
       '</div>' +
       '<div class="action-items" :class="{ hidden: !isBeingEdited }">' +
