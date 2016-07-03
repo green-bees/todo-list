@@ -43,6 +43,14 @@ var taskList = new Vue({
       this.tasks.unshift(task);
 
       api.addTask(task);
+    },
+
+    /**
+     * Updatesa a task's attributes and sends that update to the database
+     * @param  {Object} task The task to be updated
+     */
+    updateTask: function (task) {
+      api.updateTask(task);
     }
 
   }
