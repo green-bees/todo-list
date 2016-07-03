@@ -5,6 +5,10 @@ var taskList = new Vue({
     tasks: []
   },
 
+  components: {
+    'task-submission': TaskSubmission
+  },
+
   methods: {
     getTasks: function() {
       var self = this;
@@ -25,6 +29,22 @@ var taskList = new Vue({
         self.getTasks();
       });
     }
+  },
+
+  events: {
+
+    /**
+     * Add the task to the beginning of the list of tasks
+     * http://vuejs.org/guide/components.html#Custom-Events
+     * @param {Object} task The task to be inserted into the list
+     */
+    addTask: function (task) {
+      // Array.unshift() puts the item at the beginning of the Array
+      this.tasks.unshift(task);
+
+      api.addTask(task);
+    }
+
   }
 });
 

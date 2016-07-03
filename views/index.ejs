@@ -18,6 +18,8 @@
       <h5>Tasks</h5>
       <div class="list-group">
 
+        <task-submission></task-submission>
+
         <div class="list-group-item" v-for="task in tasks">
           <task-item :task-text="task.task" :importance-level="task.importance" :is-completed="task.completed"></task-item>
         </div>
@@ -32,6 +34,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js"></script>
     <script src="/javascripts/api.js"></script>
     <script src="/javascripts/components/TaskItem.js"></script>
+    <script src="/javascripts/components/TaskSubmission.js"></script>
     <script src="/javascripts/main.js"></script>
   </body>
 </html>
