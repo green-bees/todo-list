@@ -14,23 +14,32 @@ var TaskItem = Vue.component('task-item', {
       },
       required: true
     },
-    isCompleted: {
-      coerce: function (val) {
-        /** If the value exists and it evaluates to true */
-        if (val == 'true') {
-          return true;
-        }
-
-        return false;
-      },
-      required: true
-    },
     isBeingEdited: {
       type: Boolean,
       default: false
+    },
+    taskObject: {
+      type: Object,
+      coerce: function (val) {
+        if (typeof val.completed === 'string' && val.completed == 'true') {
+          val.completed = true;
+        } else if (typeof val.completed === 'string' && val.completed == 'false') {
+          val.completed = false;
+        }
+
+        return val;
+      },
+      required: true
     }
   },
   computed: {
+    isCompleted: function () {
+      if (this.taskObject.completed == 'true' || this.taskObject.completed == true) {
+        return true;
+      }
+
+      return false;
+    },
     taskStateClass: function () {
       return this.isCompleted ? 'glyphicon-check' : 'glyphicon-unchecked';
     },

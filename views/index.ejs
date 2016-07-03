@@ -21,7 +21,7 @@
         <task-submission></task-submission>
 
         <div class="list-group-item" v-for="task in tasks">
-          <task-item :task-text="task.task" :importance-level="task.importance" :is-completed="task.completed"></task-item>
+          <task-item :task-object="task" :task-text="task.task" :importance-level="task.importance"></task-item>
         </div>
 
         <button class="reload btn btn-info btn-block" v-on:click="getTasks">Reload</button>
