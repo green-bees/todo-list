@@ -72,7 +72,7 @@ a {
   border-bottom-left-radius: 0;
 }
 
-.list-group div.input-group button[type=submit] {
+.list-group div.input-group button[type=button].dropdown-toggle {
   border-bottom-right-radius: 0;
 }
 
