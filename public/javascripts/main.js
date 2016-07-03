@@ -21,7 +21,7 @@ var taskList = new Vue({
       });
     },
 
-    removeTask: function(index) {
+    removeTask: function(index) { 
       var self = this;
       var id = this.tasks[index]._id;
 
