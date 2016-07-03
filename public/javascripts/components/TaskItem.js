@@ -110,6 +110,9 @@ var TaskItem = Vue.component('task-item', {
       /** If it is currently being edited, break out of editing before saving */
       if (this.areActionsVisible === true) {
         this.areActionsVisible = false;
+        // reset the text back to the original since it wasn't saved
+        this.taskObject.task = this.taskObject.originalText;
+        this.isBeingEdited = false;
       } else if (this.areActionsVisible === false) {
         this.areActionsVisible = true;
       }
@@ -119,6 +122,7 @@ var TaskItem = Vue.component('task-item', {
 
     changeEditState: function () {
       this.isBeingEdited = !this.isBeingEdited;
+      this.taskObject.originalText = this.taskObject.task;
     },
 
     /**
