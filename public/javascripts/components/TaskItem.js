@@ -14,7 +14,7 @@ var TaskItem = Vue.component('task-item', {
       },
       required: true
     },
-    isBeingEdited: {
+    areActionsVisible: {
       type: Boolean,
       default: false
     },
@@ -44,13 +44,13 @@ var TaskItem = Vue.component('task-item', {
       return this.isCompleted ? 'glyphicon-check' : 'glyphicon-unchecked';
     },
     taskEditStatusClass: function () {
-      return this.isBeingEdited ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down';
+      return this.areActionsVisible ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down';
     },
     taskEditStatusClassEdit: function () {
-      return this.isBeingEdited ? 'glyphicon-pencil' : 'hidden';
+      return this.areActionsVisible ? 'glyphicon-pencil' : 'hidden';
     },
     taskEditStatusClassDelete: function () {
-      return this.isBeingEdited ? 'glyphicon-trash' : 'hidden';
+      return this.areActionsVisible ? 'glyphicon-trash' : 'hidden';
     },
     taskCompleteClass: function () {
       return this.isCompleted ? 'completed' : 'incomplete';
@@ -78,11 +78,11 @@ var TaskItem = Vue.component('task-item', {
         '<p>Importance: {{ importanceLevel }} | Completed: {{ isCompleted }}</p>' +
       '</div>' +
       '<div class="media-right media-middle">' +
-        '<button type="button" class="btn btn-lg btn-link" v-on:click="changeEditState">' +
+        '<button type="button" class="btn btn-lg btn-link" v-on:click="changeActionsState">' +
           '<span class="glyphicon" :class="taskEditStatusClass"></span>' +
         '</button>' +
       '</div>' +
-      '<div class="action-items" :class="{ hidden: !isBeingEdited }">' +
+      '<div class="action-items" :class="{ hidden: !areActionsVisible }">' +
         '<button type="button" class="btn btn-lg btn-link pull-right">' +
           '<span class="glyphicon glyphicon-pencil"></span>' +
         '</button>' +
@@ -97,15 +97,15 @@ var TaskItem = Vue.component('task-item', {
      * Change whether or not the Task is in the state of being edited
      * @return {Boolean} Whether or not the task is being edited
      */
-    changeEditState: function () {
+    changeActionsState: function () {
       /** If it is currently being edited, break out of editing before saving */
-      if (this.isBeingEdited === true) {
-        this.isBeingEdited = false;
-      } else if (this.isBeingEdited === false) {
-        this.isBeingEdited = true;
+      if (this.areActionsVisible === true) {
+        this.areActionsVisible = false;
+      } else if (this.areActionsVisible === false) {
+        this.areActionsVisible = true;
       }
 
-      return this.isBeingEdited;
+      return this.areActionsVisible;
     },
 
     /**
@@ -114,7 +114,7 @@ var TaskItem = Vue.component('task-item', {
      */
     changeTaskStatus: function () {
       /** If it is currently being edited, break out of editing before saving */
-      if (this.isBeingEdited === true) {
+      if (this.areActionsVisible === true) {
         return false;
       }
 
