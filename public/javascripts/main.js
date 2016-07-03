@@ -6,7 +6,8 @@ var taskList = new Vue({
   },
 
   components: {
-    'task-submission': TaskSubmission
+    'task-submission': TaskSubmission,
+    'task-item': TaskItem
   },
 
   methods: {

@@ -1,4 +1,4 @@
-var TaskItem = Vue.component('task-item', {
+var TaskItem = Vue.extend({
   props: {
     taskText: {
       type: String,
