@@ -76,3 +76,7 @@ a {
   padding: 0;
   margin: 10px 16px 0;
 }
+
+.importanceInput {
+  vertical-align: middle;
+}
