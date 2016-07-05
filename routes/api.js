@@ -52,7 +52,8 @@ function extractItem(req) {
   var item = {
     task: req.body.task,
     importance: req.body.importance,
-    completed: req.body.completed
+    completed: req.body.completed,
+    date_created: new Date()
   };
 
   return item;
