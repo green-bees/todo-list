@@ -97,8 +97,8 @@ var TaskItem = Vue.extend({
         '<button type="button" class="btn btn-lg btn-link pull-right" v-on:click="changeEditState">' +
           '<span class="glyphicon" :class="taskEditStatusClassEdit"></span>' +
         '</button>' +
-        '<button type="button" class="btn btn-lg btn-link pull-right">' +
-          '<span class="glyphicon glyphicon-trash" v-on:click="removeTask"></span>' +
+        '<button type="button" class="btn btn-lg btn-link pull-right" v-on:click="submitRemove">' +
+          '<span class="glyphicon glyphicon-trash"></span>' +
         '</button>' +
       '</div>' +
     '</div>',
@@ -148,8 +148,8 @@ var TaskItem = Vue.extend({
       return this.isCompleted;
     },
 
-    removeTask: function () {
-
+    submitRemove: function () {
+      this.$dispatch('removeTask', this.taskObject._id);
     }
   }
 });
