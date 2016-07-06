@@ -43,12 +43,12 @@ var taskList = new Vue({
      */
     updateTask: function (task) {
       api.updateTask(task);
+      this.getTasks();
     },
 
     removeTask: function(taskID) {
-      var self = this;
       api.deleteTask(taskID, function(status) {
-        self.getTasks();
+        this.getTasks();
       });
     }
 
